@@ -10,6 +10,18 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log('Hello Home');
+    let dia = 0;
+    let mapa = {
+      'v' : 5,
+      'h' : 5
+    };
+    let aeroporto = {
+      'A' : 5,
+      'B' : 15,
+      'C' : 24
+    };
+    console.log(mapa);
+    console.log(dia);
+    console.log(aeroporto);
   }
 }
