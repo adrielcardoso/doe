@@ -23,6 +23,7 @@ describe('Mapa', () => {
   it('setando posicao de aeroporto, deve retornar: Posicao de Aeroporto nao identificada', () => {
     expect( function(){
       let mapa = new Mapa(5, 5);
+      mapa.carregandoMapa();
       mapa.carregaAeroporto([]);
     }).toThrow(new TypeError('Posicao de Aeroporto nao identificada'));
   });
@@ -30,6 +31,7 @@ describe('Mapa', () => {
   it('setando posicao que nao existe na matriz, para aeroporto', () => {
     expect( function(){
       let mapa = new Mapa(5, 5);
+      mapa.carregandoMapa();
       mapa.carregaAeroporto([58]);
     }).toThrow(new TypeError('Posicao de Aeroporto maior que o tamanho do mapa'));
   });
