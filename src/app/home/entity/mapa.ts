@@ -8,6 +8,9 @@ export class Mapa {
     private tamanhoMax: number;
     private vulcao: number;
     constructor(coluna: number, linha: number) {
+        if (coluna <= 0 || linha <= 0) {
+            throw new TypeError('Matriz deve ter linhas e colunas superior a 0');
+        }
         this.coluna = coluna;
         this.linha = linha;
         this.tamanhoMax = (this.coluna * this.linha);
@@ -18,6 +21,9 @@ export class Mapa {
     }
 
     public carregaAeroporto(posicoes: Number[]) {
+        if (this.matriz.length === 0) {
+            throw new TypeError('O mapa nao foi carregado ainda');
+        }
         if (posicoes.length === 0) {
             throw new TypeError('Posicao de Aeroporto nao identificada');
         }
@@ -25,6 +31,9 @@ export class Mapa {
             iten = iten - 1;
             if (this.tamanhoMax < iten || iten < 0) {
                 throw new TypeError('Posicao de Aeroporto maior que o tamanho do mapa');
+            }
+            if (typeof this.vulcao === 'number' && this.vulcao === iten ) {
+                throw new TypeError('Nao pode ter um aeroporto sobre um vulcao.. haha');
             }
             this.aeroporto.add(iten);
         });
@@ -42,12 +51,24 @@ export class Mapa {
      *   Carregar posicao do Vulcao
      */
     public carregarVulcao(posicao: number): void {
+        if (this.matriz.length === 0) {
+            throw new TypeError('O mapa nao foi carregado ainda');
+        }
         if (posicao === 0 || posicao > this.tamanhoMax) {
             throw new TypeError('posicao nao encontrada, deve ser entre 1 ate ' + this.tamanhoMax);
         }
         posicao = (posicao - 1);
+        console.log(this.matriz);
         if (typeof this.matriz[posicao] === 'undefined') {
             throw new TypeError('posicao nao encontrada no mapa para carregar o Vulcao');
+        }
+        if (this.aeroporto.getAll().length > 0) {
+            this.aeroporto.getAll().forEach((iten: number) => {
+                iten = iten - 1;
+                if (posicao === iten ) {
+                    throw new TypeError('Nao pode ter um aeroporto sobre um vulcao.. haha');
+                }
+            });
         }
         this.vulcao = posicao;
         this.setNuvem(posicao);
@@ -221,4 +242,6 @@ export class Mapa {
         }
         return data;
     }
+    public getLinha() { return this.linha; }
+    public getColuna() { return this.coluna; }
 }
