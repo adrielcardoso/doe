@@ -9,6 +9,7 @@ import { Mapa } from './mapa';
 export class HomeComponent implements OnInit {
 
     private mapa: Mapa;
+    private data: object;
 
     constructor() {
       this.mapa = new Mapa(5, 5);
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
       // a cada novo dia, sera registrado uma nova nuvensinha
       // para cada nuvem, na horizontal e na vertical.
       // ate completar a adjacência
-        console.log(this.mapa.resultado());
+        this.data = this.mapa.resultado();
+        console.log(this.data);
     }
 }
