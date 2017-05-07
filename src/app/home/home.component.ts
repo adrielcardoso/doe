@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Mapa } from './mapa';
 
 @Component({
   selector: 'my-home',
@@ -7,21 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {}
+    private mapa: Mapa;
 
-  ngOnInit() {
-    let dia = 0;
-    let mapa = {
-      'v' : 5,
-      'h' : 5
-    };
-    let aeroporto = {
-      'A' : 5,
-      'B' : 15,
-      'C' : 24
-    };
-    console.log(mapa);
-    console.log(dia);
-    console.log(aeroporto);
-  }
+    constructor() {
+      this.mapa = new Mapa(5, 5);
+      this.mapa.carregaAeroporto([8, 25]);
+      this.mapa.carregandoMapa();
+      this.mapa.carregarVulcao(3);
+    }
+
+    ngOnInit() {
+      // a cada novo dia, sera registrado uma nova nuvensinha
+      // para cada nuvem, na horizontal e na vertical.
+      // ate completar a adjacência
+        console.log(this.mapa.resultado());
+    }
 }
