@@ -4,7 +4,10 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+
 import { routing } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
@@ -18,7 +21,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
   ],
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeComponent, LoginComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
